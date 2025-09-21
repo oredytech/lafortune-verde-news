@@ -78,7 +78,7 @@ export const HeroSection = ({ posts }: HeroSectionProps) => {
                   {getCategoryNames(mainPost)[0]}
                 </Badge>
               )}
-              <a href={mainPost.link} target="_blank" rel="noopener noreferrer">
+              <a href={`/${mainPost.slug}`}>
                 <h1 className="text-2xl lg:text-3xl font-bold mb-3 hover:text-news-accent transition-colors">
                   {mainPost.title.rendered}
                 </h1>
@@ -115,7 +115,7 @@ export const HeroSection = ({ posts }: HeroSectionProps) => {
           </h3>
           {sidebarPosts.map((post) => (
             <article key={post.id} className="group">
-              <a href={post.link} target="_blank" rel="noopener noreferrer" className="flex space-x-3">
+              <a href={`/${post.slug}`} className="flex space-x-3">
                 <div className="relative flex-shrink-0 w-20 h-16 overflow-hidden rounded">
                   <img
                     src={getFeaturedImageUrl(post, 'thumbnail')}

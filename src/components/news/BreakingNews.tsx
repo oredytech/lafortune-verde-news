@@ -22,41 +22,81 @@ export const BreakingNews = ({ posts }: BreakingNewsProps) => {
 
   return (
     <div className="bg-breaking-bg border border-breaking-border py-2 px-4 overflow-hidden">
-      <div className="container mx-auto flex items-center">
-        <div className="bg-news-primary text-white px-3 py-1 text-sm font-bold mr-4 whitespace-nowrap">
-          BREAKING NEWS
-        </div>
-        <div className="flex-1 overflow-hidden">
-          <div
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          >
-            {posts.map((post, index) => (
-              <div key={post.id} className="flex-shrink-0 w-full">
-                <a 
-                  href={post.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground hover:text-news-primary transition-colors text-sm font-medium"
-                >
-                  {post.title.rendered}
-                </a>
-              </div>
+      <div className="container mx-auto">
+        {/* Desktop Layout */}
+        <div className="hidden md:flex items-center">
+          <div className="bg-news-primary text-white px-3 py-1 text-sm font-bold mr-4 whitespace-nowrap">
+            BREAKING NEWS
+          </div>
+          <div className="flex-1 overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {posts.map((post, index) => (
+                <div key={post.id} className="flex-shrink-0 w-full">
+                  <a 
+                    href={`/${post.slug}`}
+                    className="text-foreground hover:text-news-primary transition-colors text-sm font-medium"
+                  >
+                    {post.title.rendered}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Indicators */}
+          <div className="flex space-x-1 ml-4">
+            {posts.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentIndex ? 'bg-news-primary' : 'bg-gray-300'
+                }`}
+              />
             ))}
           </div>
         </div>
-        
-        {/* Indicators */}
-        <div className="flex space-x-1 ml-4">
-          {posts.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                index === currentIndex ? 'bg-news-primary' : 'bg-gray-300'
-              }`}
-            />
-          ))}
+
+        {/* Mobile Layout */}
+        <div className="md:hidden space-y-2">
+          <div className="flex items-center justify-center">
+            <div className="bg-news-primary text-white px-3 py-1 text-sm font-bold">
+              BREAKING NEWS
+            </div>
+          </div>
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {posts.map((post, index) => (
+                <div key={post.id} className="flex-shrink-0 w-full text-center">
+                  <a 
+                    href={`/${post.slug}`}
+                    className="text-foreground hover:text-news-primary transition-colors text-sm font-medium block"
+                  >
+                    {post.title.rendered}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Indicators */}
+          <div className="flex justify-center space-x-1">
+            {posts.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentIndex ? 'bg-news-primary' : 'bg-gray-300'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ export const ArticleCard = ({ post, variant = 'default' }: ArticleCardProps) => 
 
   return (
     <article className={cardClasses[variant]}>
-      <a href={post.link} target="_blank" rel="noopener noreferrer" className="block">
+      <a href={`/${post.slug}`} className="block">
         <div className="relative overflow-hidden">
           <img 
             src={imageUrl} 
