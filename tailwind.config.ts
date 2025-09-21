@@ -47,6 +47,23 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // News site specific colors
+        news: {
+          primary: "hsl(var(--news-primary))",
+          "primary-light": "hsl(var(--news-primary-light))",
+          "primary-dark": "hsl(var(--news-primary-dark))",
+          secondary: "hsl(var(--news-secondary))",
+          accent: "hsl(var(--news-accent))",
+          overlay: "hsl(var(--news-overlay))",
+        },
+        breaking: {
+          bg: "hsl(var(--breaking-bg))",
+          border: "hsl(var(--breaking-border))",
+        },
+        category: {
+          bg: "hsl(var(--category-bg))",
+          text: "hsl(var(--category-text))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
