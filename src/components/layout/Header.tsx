@@ -69,12 +69,11 @@ export const Header = () => {
           {/* Search and Mobile Menu */}
           <div className="flex items-center space-x-4">
             <div className="hidden md:flex items-center">
-              <Input 
-                type="search" 
-                placeholder="Rechercher..." 
-                className="w-64"
-              />
-              <Button size="sm" className="ml-2 bg-news-primary hover:bg-news-primary-dark">
+              <Button 
+                size="sm" 
+                className="bg-news-primary hover:bg-news-primary-dark"
+                onClick={() => window.location.href = '/recherche'}
+              >
                 <Search className="h-4 w-4" />
               </Button>
             </div>
@@ -97,13 +96,13 @@ export const Header = () => {
         <div className="md:hidden bg-background border-t border-border">
           <nav className="container mx-auto px-4 py-4 space-y-4">
             <div className="flex items-center mb-4">
-              <Input 
-                type="search" 
-                placeholder="Rechercher..." 
-                className="flex-1 mr-2"
-              />
-              <Button size="sm" className="bg-news-primary hover:bg-news-primary-dark">
-                <Search className="h-4 w-4" />
+              <Button 
+                size="sm" 
+                className="bg-news-primary hover:bg-news-primary-dark w-full"
+                onClick={() => window.location.href = '/recherche'}
+              >
+                <Search className="h-4 w-4 mr-2" />
+                Rechercher
               </Button>
             </div>
             <a href="/" className="block text-foreground hover:text-news-primary font-medium py-2">

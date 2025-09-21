@@ -135,3 +135,68 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Article content styling for better readability */
+.prose {
+  @apply text-foreground;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  @apply text-foreground font-bold mb-4 mt-6;
+}
+
+.prose h1 {
+  @apply text-2xl;
+}
+
+.prose h2 {
+  @apply text-xl;
+}
+
+.prose h3 {
+  @apply text-lg;
+}
+
+.prose p {
+  @apply mb-4 leading-relaxed;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-news-primary pl-4 py-2 my-6 bg-muted/30 italic;
+}
+
+.prose ul, .prose ol {
+  @apply my-4 pl-6;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose img {
+  @apply rounded-lg shadow-md my-6 w-full h-auto;
+}
+
+.prose a {
+  @apply text-news-primary hover:text-news-primary-light underline;
+}
+
+.prose strong, .prose b {
+  @apply font-semibold text-foreground;
+}
+
+.prose em, .prose i {
+  @apply italic;
+}
+
+.prose code {
+  @apply bg-muted px-2 py-1 rounded text-sm;
+}
+
+.prose pre {
+  @apply bg-muted p-4 rounded-lg overflow-x-auto my-4;
+}
+
+.prose hr {
+  @apply border-border my-8;
+}
