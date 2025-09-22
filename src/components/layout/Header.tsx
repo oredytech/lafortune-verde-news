@@ -1,11 +1,28 @@
-import { useState } from 'react';
-import { Search, Menu, X, Facebook, Twitter, Youtube } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Search, Menu, X, Facebook, Twitter, Youtube, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import logoImage from '@/assets/logo-large.jpg';
+import { fetchCategories } from '@/lib/wordpress-api';
+import { Category } from '@/types/wordpress';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      const categoriesData = await fetchCategories();
+      setCategories(categoriesData);
+    };
+    loadCategories();
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-background border-b border-border">
@@ -46,18 +63,29 @@ export const Header = () => {
             <a href="/" className="text-foreground hover:text-news-primary font-medium transition-colors">
               Accueil
             </a>
-            <a href="/category/actualites" className="text-foreground hover:text-news-primary font-medium transition-colors">
-              Actualités
-            </a>
-            <a href="/category/analyses" className="text-foreground hover:text-news-primary font-medium transition-colors">
-              Analyses
-            </a>
-            <a href="/category/opinions" className="text-foreground hover:text-news-primary font-medium transition-colors">
-              Opinions
-            </a>
-            <a href="/category/reportages" className="text-foreground hover:text-news-primary font-medium transition-colors">
-              Reportages
-            </a>
+            
+            {/* Categories Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="text-foreground hover:text-news-primary font-medium transition-colors">
+                  Catégories
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-48">
+                {categories.map((category) => (
+                  <DropdownMenuItem key={category.id} asChild>
+                    <a 
+                      href={`/category/${category.slug}`}
+                      className="cursor-pointer w-full"
+                    >
+                      {category.name}
+                    </a>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <a href="/contacts" className="text-foreground hover:text-news-primary font-medium transition-colors">
               Contacts
             </a>
@@ -108,24 +136,29 @@ export const Header = () => {
             <a href="/" className="block text-foreground hover:text-news-primary font-medium py-2">
               Accueil
             </a>
-            <a href="/category/actualites" className="block text-foreground hover:text-news-primary font-medium py-2">
-              Actualités
-            </a>
-            <a href="/category/analyses" className="block text-foreground hover:text-news-primary font-medium py-2">
-              Analyses
-            </a>
-            <a href="/category/opinions" className="block text-foreground hover:text-news-primary font-medium py-2">
-              Opinions
-            </a>
-            <a href="/category/reportages" className="block text-foreground hover:text-news-primary font-medium py-2">
-              Reportages
-            </a>
-            <a href="/contacts" className="block text-foreground hover:text-news-primary font-medium py-2">
-              Contacts
-            </a>
-            <a href="/a-propos" className="block text-foreground hover:text-news-primary font-medium py-2">
-              À propos
-            </a>
+            
+            {/* Mobile Categories */}
+            <div className="border-t border-border pt-2 mt-2">
+              <div className="text-sm font-semibold text-muted-foreground mb-2">Catégories</div>
+              {categories.map((category) => (
+                <a 
+                  key={category.id}
+                  href={`/category/${category.slug}`}
+                  className="block text-foreground hover:text-news-primary font-medium py-2 pl-4"
+                >
+                  {category.name}
+                </a>
+              ))}
+            </div>
+            
+            <div className="border-t border-border pt-2 mt-2">
+              <a href="/contacts" className="block text-foreground hover:text-news-primary font-medium py-2">
+                Contacts
+              </a>
+              <a href="/a-propos" className="block text-foreground hover:text-news-primary font-medium py-2">
+                À propos
+              </a>
+            </div>
           </nav>
         </div>
       )}
