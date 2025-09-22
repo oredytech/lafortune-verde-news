@@ -46,16 +46,16 @@ export const Header = () => {
             <a href="/" className="text-foreground hover:text-news-primary font-medium transition-colors">
               Accueil
             </a>
-            <a href="/actualites" className="text-foreground hover:text-news-primary font-medium transition-colors">
+            <a href="/category/actualites" className="text-foreground hover:text-news-primary font-medium transition-colors">
               Actualités
             </a>
-            <a href="/analyses" className="text-foreground hover:text-news-primary font-medium transition-colors">
+            <a href="/category/analyses" className="text-foreground hover:text-news-primary font-medium transition-colors">
               Analyses
             </a>
-            <a href="/opinions" className="text-foreground hover:text-news-primary font-medium transition-colors">
+            <a href="/category/opinions" className="text-foreground hover:text-news-primary font-medium transition-colors">
               Opinions
             </a>
-            <a href="/reportages" className="text-foreground hover:text-news-primary font-medium transition-colors">
+            <a href="/category/reportages" className="text-foreground hover:text-news-primary font-medium transition-colors">
               Reportages
             </a>
             <a href="/contacts" className="text-foreground hover:text-news-primary font-medium transition-colors">
@@ -108,16 +108,16 @@ export const Header = () => {
             <a href="/" className="block text-foreground hover:text-news-primary font-medium py-2">
               Accueil
             </a>
-            <a href="/actualites" className="block text-foreground hover:text-news-primary font-medium py-2">
+            <a href="/category/actualites" className="block text-foreground hover:text-news-primary font-medium py-2">
               Actualités
             </a>
-            <a href="/analyses" className="block text-foreground hover:text-news-primary font-medium py-2">
+            <a href="/category/analyses" className="block text-foreground hover:text-news-primary font-medium py-2">
               Analyses
             </a>
-            <a href="/opinions" className="block text-foreground hover:text-news-primary font-medium py-2">
+            <a href="/category/opinions" className="block text-foreground hover:text-news-primary font-medium py-2">
               Opinions
             </a>
-            <a href="/reportages" className="block text-foreground hover:text-news-primary font-medium py-2">
+            <a href="/category/reportages" className="block text-foreground hover:text-news-primary font-medium py-2">
               Reportages
             </a>
             <a href="/contacts" className="block text-foreground hover:text-news-primary font-medium py-2">
