@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import logoImage from '@/assets/logo-large.jpg';
+import logoImage from '@/assets/LOGO LARGE 2.jpg';
 import { fetchCategories } from '@/lib/wordpress-api';
 import { Category } from '@/types/wordpress';
 
