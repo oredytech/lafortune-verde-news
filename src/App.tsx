@@ -25,7 +25,7 @@ const App = () => (
           <Route path="/a-propos" element={<AboutPage />} />
           <Route path="/contacts" element={<ContactPage />} />
           <Route path="/category/:category" element={<CategoryPage />} />
-          <Route path="/:slug" element={<ArticleDetail />} />
+          <Route path="/:year/:month/:day/:slug" element={<ArticleDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

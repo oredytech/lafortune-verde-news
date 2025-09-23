@@ -10,7 +10,7 @@ import { formatDate, getFeaturedImageUrl } from '@/lib/wordpress-api';
 import { useToast } from '@/hooks/use-toast';
 
 const ArticleDetail = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const { year, month, day, slug } = useParams<{ year: string; month: string; day: string; slug: string }>();
   const navigate = useNavigate();
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
@@ -66,7 +66,8 @@ const ArticleDetail = () => {
   }
 
   const featuredImageUrl = getFeaturedImageUrl(post, 'large');
-  const articleUrl = `https://lafortunerdc.net/${post.slug}`;
+  const postDate = new Date(post.date);
+  const articleUrl = `https://lafortunerdc.net/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${post.slug}`;
 
   return (
     <div className="min-h-screen bg-background">

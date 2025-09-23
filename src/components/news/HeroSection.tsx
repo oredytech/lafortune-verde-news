@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Post } from '@/types/wordpress';
 import { getFeaturedImageUrl, formatDate, getCategoryNames, getExcerpt } from '@/lib/wordpress-api';
+import { generatePostUrl } from '@/lib/url-helpers';
 import { Badge } from '@/components/ui/badge';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -78,7 +79,7 @@ export const HeroSection = ({ posts }: HeroSectionProps) => {
                   {getCategoryNames(mainPost)[0]}
                 </Badge>
               )}
-              <a href={`/${mainPost.slug}`}>
+              <a href={generatePostUrl(mainPost)}>
                 <h1 className="text-2xl lg:text-3xl font-bold mb-3 hover:text-news-accent transition-colors">
                   {mainPost.title.rendered}
                 </h1>
@@ -115,7 +116,7 @@ export const HeroSection = ({ posts }: HeroSectionProps) => {
           </h3>
           {sidebarPosts.map((post) => (
             <article key={post.id} className="group">
-              <a href={`/${post.slug}`} className="flex space-x-3">
+              <a href={generatePostUrl(post)} className="flex space-x-3">
                 <div className="relative flex-shrink-0 w-20 h-16 overflow-hidden rounded">
                   <img
                     src={getFeaturedImageUrl(post, 'thumbnail')}

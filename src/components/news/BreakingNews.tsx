@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Post } from '@/types/wordpress';
+import { generatePostUrl } from '@/lib/url-helpers';
 
 interface BreakingNewsProps {
   posts: Post[];
@@ -36,7 +37,7 @@ export const BreakingNews = ({ posts }: BreakingNewsProps) => {
               {posts.map((post, index) => (
                 <div key={post.id} className="flex-shrink-0 w-full">
                   <a 
-                    href={`/${post.slug}`}
+                    href={generatePostUrl(post)}
                     className="text-foreground hover:text-news-primary transition-colors text-sm font-medium"
                   >
                     {post.title.rendered}
@@ -75,7 +76,7 @@ export const BreakingNews = ({ posts }: BreakingNewsProps) => {
               {posts.map((post, index) => (
                 <div key={post.id} className="flex-shrink-0 w-full text-center">
                   <a 
-                    href={`/${post.slug}`}
+                    href={generatePostUrl(post)}
                     className="text-foreground hover:text-news-primary transition-colors text-sm font-medium block"
                   >
                     {post.title.rendered}

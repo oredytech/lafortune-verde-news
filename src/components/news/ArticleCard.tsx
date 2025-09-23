@@ -1,5 +1,6 @@
 import { Post } from '@/types/wordpress';
 import { getFeaturedImageUrl, formatDate, getCategoryNames, getExcerpt } from '@/lib/wordpress-api';
+import { generatePostUrl } from '@/lib/url-helpers';
 import { Badge } from '@/components/ui/badge';
 
 interface ArticleCardProps {
@@ -26,7 +27,7 @@ export const ArticleCard = ({ post, variant = 'default' }: ArticleCardProps) => 
 
   return (
     <article className={cardClasses[variant]}>
-      <a href={`/${post.slug}`} className="block">
+      <a href={generatePostUrl(post)} className="block">
         <div className="relative overflow-hidden">
           <img 
             src={imageUrl} 
