@@ -11,7 +11,7 @@ export const Footer = () => {
               sur l'actualité de la République Démocratique du Congo.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-news-accent transition-colors">
+              <a href="https://www.facebook.com/share/1EHKPrwisP/" className="text-gray-300 hover:text-news-accent transition-colors">
                 Facebook
               </a>
               <a href="#" className="text-gray-300 hover:text-news-accent transition-colors">
@@ -63,7 +63,7 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-gray-600 mt-8 pt-8 text-center text-gray-300">
-          <p>&copy; 2025 LA FORTUNE RDC | Conçu par <a href="https://oredytech.com" target="_blank" rel="noopener noreferrer" className="text-news-accent hover:text-white transition-colors">Oredy TECHNOLOGIES</a></p>
+          <p>&copy; 2025 LA FORTUNE RDC | Fièrement conçu par <a href="https://oredytech.com" target="_blank" rel="noopener noreferrer" className="text-news-accent hover:text-white transition-colors">Oredy TECHNOLOGIES</a></p>
         </div>
       </div>
     </footer>
