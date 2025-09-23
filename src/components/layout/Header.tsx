@@ -93,7 +93,7 @@ export const Header = () => {
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-48">
+              <DropdownMenuContent align="start" className="w-48 max-h-96 overflow-y-auto">
                 {categories.map((category) => (
                   <DropdownMenuItem key={category.id} asChild>
                     <a 
@@ -161,15 +161,17 @@ export const Header = () => {
             {/* Mobile Categories */}
             <div className="border-t border-border pt-2 mt-2">
               <div className="text-sm font-semibold text-muted-foreground mb-2">Catégories</div>
-              {categories.map((category) => (
-                <a 
-                  key={category.id}
-                  href={`/category/${category.slug}`}
-                  className="block text-foreground hover:text-news-primary font-medium py-2 pl-4"
-                >
-                  {category.name}
-                </a>
-              ))}
+              <div className="max-h-48 overflow-y-auto">
+                {categories.map((category) => (
+                  <a 
+                    key={category.id}
+                    href={`/category/${category.slug}`}
+                    className="block text-foreground hover:text-news-primary font-medium py-2 pl-4"
+                  >
+                    {category.name}
+                  </a>
+                ))}
+              </div>
             </div>
             
             <div className="border-t border-border pt-2 mt-2">

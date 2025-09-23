@@ -20,7 +20,11 @@ export const NewsSection = ({ title, posts, sectionId, showViewMore = true }: Ne
           {title}
         </h2>
         {showViewMore && (
-          <Button variant="outline" className="text-news-primary border-news-primary hover:bg-news-primary hover:text-white">
+          <Button 
+            variant="outline" 
+            className="text-news-primary border-news-primary hover:bg-news-primary hover:text-white"
+            onClick={() => window.location.href = `/category/${sectionId}`}
+          >
             Voir plus
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>

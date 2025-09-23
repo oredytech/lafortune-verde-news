@@ -7,12 +7,16 @@ import { ArticleCard } from '@/components/news/ArticleCard';
 import { Post } from '@/types/wordpress';
 import { fetchPostsByCategory, fetchCategories } from '@/lib/wordpress-api';
 import { Loader2 } from 'lucide-react';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from '@/components/ui/pagination';
 
 const CategoryPage = () => {
   const { category } = useParams<{ category: string }>();
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [categoryName, setCategoryName] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const postsPerPage = 12;
 
   const getCategoryId = (slug: string): number | null => {
     const categoryMap: { [key: string]: number } = {
@@ -41,9 +45,11 @@ const CategoryPage = () => {
       setLoading(true);
       try {
         // Use category slug directly with the API
-        const categoryPosts = await fetchPostsByCategory(category);
+        const categoryPosts = await fetchPostsByCategory(category, currentPage, postsPerPage);
         setPosts(categoryPosts);
         setCategoryName(getCategoryDisplayName(category));
+        // Estimez le nombre total de pages (dans un vrai projet, l'API devrait retourner cette info)
+        setTotalPages(Math.ceil(categoryPosts.length >= postsPerPage ? currentPage + 2 : currentPage));
       } catch (error) {
         console.error('Erreur lors du chargement des articles:', error);
       } finally {
@@ -52,7 +58,7 @@ const CategoryPage = () => {
     };
 
     loadCategoryPosts();
-  }, [category, categoryName]);
+  }, [category, currentPage]);
 
   if (loading) {
     return (
@@ -85,11 +91,61 @@ const CategoryPage = () => {
             </div>
 
             {posts.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {posts.map((post) => (
-                  <ArticleCard key={post.id} post={post} variant="default" />
-                ))}
-              </div>
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {posts.map((post) => (
+                    <ArticleCard key={post.id} post={post} variant="default" />
+                  ))}
+                </div>
+                
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="mt-8">
+                    <Pagination>
+                      <PaginationContent>
+                        {currentPage > 1 && (
+                          <PaginationItem>
+                            <PaginationPrevious 
+                              href="#" 
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setCurrentPage(currentPage - 1);
+                              }}
+                            />
+                          </PaginationItem>
+                        )}
+                        
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                          <PaginationItem key={page}>
+                            <PaginationLink
+                              href="#"
+                              isActive={page === currentPage}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setCurrentPage(page);
+                              }}
+                            >
+                              {page}
+                            </PaginationLink>
+                          </PaginationItem>
+                        ))}
+                        
+                        {currentPage < totalPages && (
+                          <PaginationItem>
+                            <PaginationNext 
+                              href="#" 
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setCurrentPage(currentPage + 1);
+                              }}
+                            />
+                          </PaginationItem>
+                        )}
+                      </PaginationContent>
+                    </Pagination>
+                  </div>
+                )}
+              </>
             ) : (
               <div className="text-center py-12">
                 <p className="text-muted-foreground text-lg">

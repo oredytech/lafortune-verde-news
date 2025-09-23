@@ -65,7 +65,7 @@ export const Sidebar = () => {
             {categories.map((category) => (
               <div key={category.id} className="flex items-center justify-between py-1">
                 <a 
-                  href={`#category-${category.slug}`}
+                  href={`/category/${category.slug}`}
                   className="text-sm text-foreground hover:text-news-primary transition-colors flex-1"
                 >
                   {category.name}
