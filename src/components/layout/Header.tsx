@@ -15,6 +15,7 @@ import { Category } from '@/types/wordpress';
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [currentDate, setCurrentDate] = useState('');
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -22,6 +23,26 @@ export const Header = () => {
       setCategories(categoriesData);
     };
     loadCategories();
+
+    // Mettre à jour la date
+    const updateDate = () => {
+      const now = new Date();
+      const options: Intl.DateTimeFormatOptions = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+      const formattedDate = now.toLocaleDateString('fr-FR', options);
+      const capitalizedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+      setCurrentDate(capitalizedDate);
+    };
+
+    updateDate();
+    // Mettre à jour la date chaque minute
+    const dateInterval = setInterval(updateDate, 60000);
+
+    return () => clearInterval(dateInterval);
   }, []);
 
   return (
@@ -30,7 +51,7 @@ export const Header = () => {
       <div className="border-b border-border bg-muted/30">
         <div className="container mx-auto px-4 py-2 flex justify-between items-center">
           <div className="text-sm text-muted-foreground">
-            Samedi 21 septembre 2025
+            {currentDate}
           </div>
           <div className="flex items-center space-x-4">
             <Button variant="ghost" size="sm" className="text-news-primary hover:text-news-primary-light">
