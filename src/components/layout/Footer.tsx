@@ -28,23 +28,23 @@ export const Footer = () => {
             <h4 className="text-lg font-semibold text-news-accent mb-4">Liens rapides</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/actualites" className="text-gray-300 hover:text-white transition-colors">
-                  Actualités
+                <a href="/" className="text-gray-300 hover:text-white transition-colors">
+                  Accueil
                 </a>
               </li>
               <li>
-                <a href="/analyses" className="text-gray-300 hover:text-white transition-colors">
-                  Analyses
+                <a href="/a-propos" className="text-gray-300 hover:text-white transition-colors">
+                  À propos
                 </a>
               </li>
               <li>
-                <a href="/opinions" className="text-gray-300 hover:text-white transition-colors">
-                  Opinions
+                <a href="/contacts" className="text-gray-300 hover:text-white transition-colors">
+                  Contacts
                 </a>
               </li>
               <li>
-                <a href="/reportages" className="text-gray-300 hover:text-white transition-colors">
-                  Reportages
+                <a href="/recherche" className="text-gray-300 hover:text-white transition-colors">
+                  Recherche
                 </a>
               </li>
             </ul>
@@ -54,15 +54,16 @@ export const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold text-news-accent mb-4">Contact</h4>
             <ul className="space-y-2 text-gray-300">
-              <li>Kinshasa, RDC</li>
-              <li>contact@lafortunerdc.net</li>
-              <li>+243 XX XXX XXXX</li>
+              <li>Nord-Kivu, Goma, Com. Karisimbi, Q. Virunga, Av. Muteberwa, N°112</li>
+              <li>lafortunerdc3@gmail.com</li>
+              <li>+243 974 980 040</li>
+              <li>+243 829 412 747</li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-600 mt-8 pt-8 text-center text-gray-300">
-          <p>&copy; 2025 LA FORTUNE RDC | Conçu par Oredy TECHNOLOGIES</p>
+          <p>&copy; 2025 LA FORTUNE RDC | Conçu par <a href="https://oredytech.com" target="_blank" rel="noopener noreferrer" className="text-news-accent hover:text-white transition-colors">Oredy TECHNOLOGIES</a></p>
         </div>
       </div>
     </footer>
