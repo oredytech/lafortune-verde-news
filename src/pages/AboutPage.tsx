@@ -57,7 +57,7 @@ const AboutPage = () => {
                     </div>
                     <div className="bg-muted/50 p-4 rounded-lg">
                       <h3 className="font-bold text-news-primary">Rédaction</h3>
-                      <p><strong>Roger Kambale</strong><br />Rédacteur en chef</p>
+                      <p><strong>Trésor Waytsomaya</strong><br />Rédacteur en chef</p>
                     </div>
                     <div className="bg-muted/50 p-4 rounded-lg">
                       <h3 className="font-bold text-news-primary">Marketing</h3>
@@ -72,7 +72,7 @@ const AboutPage = () => {
                       <p>• Yannick Warangisi</p>
                       <p>• Katehero Bienvenue</p>
                       <p>• Erick Randa</p>
-                      <p>• Tresor Wayitsomaya</p>
+                  
                     </div>
                   </div>
                 </div>
