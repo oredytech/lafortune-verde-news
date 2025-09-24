@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { SocialShare } from '@/components/article/SocialShare';
 import { CommentForm } from '@/components/article/CommentForm';
+import { CommentsList } from '@/components/article/CommentsList';
 import { formatDate, getFeaturedImageUrl } from '@/lib/wordpress-api';
 import { useToast } from '@/hooks/use-toast';
 
@@ -14,6 +15,7 @@ const ArticleDetail = () => {
   const navigate = useNavigate();
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
+  const [commentsRefreshTrigger, setCommentsRefreshTrigger] = useState(0);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -69,6 +71,10 @@ const ArticleDetail = () => {
   const postDate = new Date(post.date);
   const articleUrl = `https://lafortunerdc.net/${postDate.getFullYear()}/${String(postDate.getMonth() + 1).padStart(2, '0')}/${String(postDate.getDate()).padStart(2, '0')}/${post.slug}`;
 
+  const handleCommentSubmitted = () => {
+    setCommentsRefreshTrigger(prev => prev + 1);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -112,8 +118,17 @@ const ArticleDetail = () => {
               url={articleUrl}
             />
 
+            {/* Comments List */}
+            <CommentsList 
+              postId={post.id} 
+              refreshTrigger={commentsRefreshTrigger}
+            />
+
             {/* Comment Form */}
-            <CommentForm postId={post.id} />
+            <CommentForm 
+              postId={post.id} 
+              onCommentSubmitted={handleCommentSubmitted}
+            />
           </article>
           
           {/* Sidebar */}

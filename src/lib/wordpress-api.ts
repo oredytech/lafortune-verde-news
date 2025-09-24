@@ -1,4 +1,4 @@
-import { Post, Category } from '@/types/wordpress';
+import { Post, Category, Comment } from '@/types/wordpress';
 
 const BASE_URL = 'https://lafortunerdc.net/wp-json/wp/v2';
 
@@ -91,4 +91,46 @@ export function getCategoryNames(post: Post): string[] {
     return post._embedded["wp:term"][0].map(term => term.name);
   }
   return [];
+}
+
+export async function fetchComments(postId: number): Promise<Comment[]> {
+  try {
+    const response = await fetch(`${BASE_URL}/comments?post=${postId}&orderby=date&order=asc`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching comments:', error);
+    return [];
+  }
+}
+
+export async function submitComment(postId: number, author_name: string, author_email: string, content: string): Promise<Comment> {
+  try {
+    const response = await fetch(`${BASE_URL}/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        post: postId,
+        author_name,
+        author_email,
+        content,
+      }),
+    });
+    
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || `HTTP error! status: ${response.status}`);
+    }
+    
+    return response.json();
+  } catch (error) {
+    console.error('Error submitting comment:', error);
+    throw error;
+  }
 }

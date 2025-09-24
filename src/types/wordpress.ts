@@ -86,3 +86,26 @@ export interface MediaItem {
   source_url: string;
   _links: any;
 }
+
+export interface Comment {
+  id: number;
+  post: number;
+  parent: number;
+  author: number;
+  author_name: string;
+  author_email: string;
+  author_url: string;
+  author_ip: string;
+  author_user_agent: string;
+  date: string;
+  date_gmt: string;
+  content: {
+    rendered: string;
+  };
+  link: string;
+  status: string;
+  type: string;
+  author_avatar_urls: {
+    [size: string]: string;
+  };
+}

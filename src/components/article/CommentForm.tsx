@@ -5,12 +5,14 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { submitComment } from '@/lib/wordpress-api';
 
 interface CommentFormProps {
   postId: number;
+  onCommentSubmitted?: () => void;
 }
 
-export const CommentForm = ({ postId }: CommentFormProps) => {
+export const CommentForm = ({ postId, onCommentSubmitted }: CommentFormProps) => {
   const [formData, setFormData] = useState({
     author_name: '',
     author_email: '',
@@ -34,9 +36,7 @@ export const CommentForm = ({ postId }: CommentFormProps) => {
     setIsSubmitting(true);
     
     try {
-      // In a real implementation, you would submit to WordPress API
-      // For now, just show success message
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await submitComment(postId, formData.author_name, formData.author_email, formData.content);
       
       toast({
         title: "Commentaire envoyé",
@@ -48,7 +48,12 @@ export const CommentForm = ({ postId }: CommentFormProps) => {
         author_email: '',
         content: ''
       });
-    } catch (error) {
+      
+      // Refresh comments if callback provided
+      if (onCommentSubmitted) {
+        onCommentSubmitted();
+      }
+    } catch (error: any) {
       toast({
         title: "Erreur",
         description: "Impossible d'envoyer le commentaire. Veuillez réessayer.",
