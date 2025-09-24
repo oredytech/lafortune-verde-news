@@ -52,11 +52,11 @@ const AboutPage = () => {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div className="bg-muted/50 p-4 rounded-lg">
-                      <h3 className="font-bold text-news-primary">Direction</h3>
-                      <p><strong>Magloire TSONGO</strong><br />Directeur et Fondateur</p>
+                      <h3 className="font-bold text-news-primary">Direction de Publication</h3>
+                      <p><strong>Roger Kakulirahi</strong><br />Directeur de publication</p>
                     </div>
                     <div className="bg-muted/50 p-4 rounded-lg">
-                      <h3 className="font-bold text-news-primary">Rédaction</h3>
+                      <h3 className="font-bold text-news-primary">Rédaction en Chef</h3>
                       <p><strong>Trésor Waytsomaya</strong><br />Rédacteur en chef</p>
                     </div>
                     <div className="bg-muted/50 p-4 rounded-lg">
@@ -66,13 +66,68 @@ const AboutPage = () => {
                   </div>
 
                   <div>
-                    <h3 className="font-bold text-news-primary mb-3">Équipe Rédactionnelle</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                      <p>• Kaleru Kakule</p>
-                      <p>• Yannick Warangisi</p>
-                      <p>• Katehero Bienvenue</p>
-                      <p>• Erick Randa</p>
-                  
+                    <h3 className="font-bold text-news-primary mb-4">Équipe Rédactionnelle</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Roger Kakulirahi</p>
+                        <p className="text-sm text-muted-foreground">Directeur de publication</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Muyisa Kokota Patrice</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Magloire TSONGO</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Yannick Warangasi</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Maki Barack Patrick</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Trésor Waytsomaya</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur en chef</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Georges Kizito</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Ghislain Siwako</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Mathieu Katsuva</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Samuel Kaleru</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Richard Maliro</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Augustin Malolero</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Blaise Bushenyi</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Bienfait Tumusifu</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
+                      <div className="bg-background p-3 rounded border border-border">
+                        <p className="font-medium">Eric Randa</p>
+                        <p className="text-sm text-muted-foreground">Rédacteur</p>
+                      </div>
                     </div>
                   </div>
                 </div>
