@@ -1,7 +1,8 @@
 import { Share2, Facebook, Twitter, Linkedin, Link } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import whatsappIcon from '@/assets/whatsapp-icon.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 interface SocialShareProps {
   title: string;
@@ -80,7 +81,7 @@ export const SocialShare = ({ title, url }: SocialShareProps) => {
             onClick={() => window.open(shareUrls.whatsapp, '_blank')}
             className="flex items-center gap-1 sm:gap-2"
           >
-            <img src={whatsappIcon} alt="WhatsApp" className="h-4 w-4" />
+            <FontAwesomeIcon icon={faWhatsapp} className="h-4 w-4" />
             <span className="hidden sm:inline">WhatsApp</span>
           </Button>
           
