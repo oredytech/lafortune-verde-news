@@ -2,6 +2,7 @@ import { Post } from '@/types/wordpress';
 import { getFeaturedImageUrl, formatDate, getCategoryNames, getExcerpt } from '@/lib/wordpress-api';
 import { generatePostUrl } from '@/lib/url-helpers';
 import { Badge } from '@/components/ui/badge';
+import { decodeHtmlEntities } from '@/lib/utils';
 
 interface ArticleCardProps {
   post: Post;
@@ -31,7 +32,7 @@ export const ArticleCard = ({ post, variant = 'default' }: ArticleCardProps) => 
         <div className="relative overflow-hidden">
           <img 
             src={imageUrl} 
-            alt={post.title.rendered}
+            alt={decodeHtmlEntities(post.title.rendered)}
             className={imageClasses[variant]}
             loading="lazy"
           />
@@ -48,7 +49,7 @@ export const ArticleCard = ({ post, variant = 'default' }: ArticleCardProps) => 
           <h3 className={`font-bold text-card-foreground group-hover:text-news-primary transition-colors line-clamp-2 ${
             variant === 'large' ? 'text-xl mb-3' : variant === 'small' ? 'text-sm mb-2' : 'text-lg mb-2'
           }`}>
-            {post.title.rendered}
+            {decodeHtmlEntities(post.title.rendered)}
           </h3>
           
           {variant !== 'small' && (

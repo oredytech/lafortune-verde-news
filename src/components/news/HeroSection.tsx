@@ -5,6 +5,7 @@ import { generatePostUrl } from '@/lib/url-helpers';
 import { Badge } from '@/components/ui/badge';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { decodeHtmlEntities } from '@/lib/utils';
 
 interface HeroSectionProps {
   posts: Post[];
@@ -45,7 +46,7 @@ export const HeroSection = ({ posts }: HeroSectionProps) => {
             <div className="relative h-96 lg:h-[500px] overflow-hidden">
               <img
                 src={getFeaturedImageUrl(mainPost, 'large')}
-                alt={mainPost.title.rendered}
+                alt={decodeHtmlEntities(mainPost.title.rendered)}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -81,7 +82,7 @@ export const HeroSection = ({ posts }: HeroSectionProps) => {
               )}
               <a href={generatePostUrl(mainPost)}>
                 <h1 className="text-2xl lg:text-3xl font-bold mb-3 hover:text-news-accent transition-colors">
-                  {mainPost.title.rendered}
+                  {decodeHtmlEntities(mainPost.title.rendered)}
                 </h1>
               </a>
               <p className="text-gray-200 text-sm mb-2 line-clamp-2">
@@ -120,13 +121,13 @@ export const HeroSection = ({ posts }: HeroSectionProps) => {
                 <div className="relative flex-shrink-0 w-20 h-16 overflow-hidden rounded">
                   <img
                     src={getFeaturedImageUrl(post, 'thumbnail')}
-                    alt={post.title.rendered}
+                    alt={decodeHtmlEntities(post.title.rendered)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-medium text-sm text-card-foreground group-hover:text-news-primary transition-colors line-clamp-2 mb-1">
-                    {post.title.rendered}
+                    {decodeHtmlEntities(post.title.rendered)}
                   </h4>
                   <time className="text-xs text-muted-foreground">
                     {formatDate(post.date)}

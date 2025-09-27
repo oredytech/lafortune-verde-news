@@ -9,6 +9,7 @@ import { CommentForm } from '@/components/article/CommentForm';
 import { CommentsList } from '@/components/article/CommentsList';
 import { formatDate, getFeaturedImageUrl } from '@/lib/wordpress-api';
 import { useToast } from '@/hooks/use-toast';
+import { decodeHtmlEntities } from '@/lib/utils';
 
 const ArticleDetail = () => {
   const { year, month, day, slug } = useParams<{ year: string; month: string; day: string; slug: string }>();
@@ -86,7 +87,7 @@ const ArticleDetail = () => {
             {/* Article Header */}
             <header className="mb-6">
               <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
-                {post.title.rendered}
+                {decodeHtmlEntities(post.title.rendered)}
               </h1>
               <div className="flex items-center text-sm text-muted-foreground mb-4">
                 <time dateTime={post.date}>
@@ -100,7 +101,7 @@ const ArticleDetail = () => {
               <div className="mb-6">
                 <img
                   src={featuredImageUrl}
-                  alt={post.title.rendered}
+                  alt={decodeHtmlEntities(post.title.rendered)}
                   className="w-full h-auto rounded-lg shadow-lg"
                 />
               </div>
@@ -114,7 +115,7 @@ const ArticleDetail = () => {
 
             {/* Social Share */}
             <SocialShare 
-              title={post.title.rendered}
+              title={decodeHtmlEntities(post.title.rendered)}
               url={articleUrl}
             />
 

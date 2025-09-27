@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Post } from '@/types/wordpress';
 import { generatePostUrl } from '@/lib/url-helpers';
+import { decodeHtmlEntities } from '@/lib/utils';
 
 interface BreakingNewsProps {
   posts: Post[];
@@ -40,7 +41,7 @@ export const BreakingNews = ({ posts }: BreakingNewsProps) => {
                     href={generatePostUrl(post)}
                     className="text-foreground hover:text-news-primary transition-colors text-sm font-medium"
                   >
-                    {post.title.rendered}
+                    {decodeHtmlEntities(post.title.rendered)}
                   </a>
                 </div>
               ))}
@@ -79,7 +80,7 @@ export const BreakingNews = ({ posts }: BreakingNewsProps) => {
                     href={generatePostUrl(post)}
                     className="text-foreground hover:text-news-primary transition-colors text-sm font-medium block"
                   >
-                    {post.title.rendered}
+                    {decodeHtmlEntities(post.title.rendered)}
                   </a>
                 </div>
               ))}
