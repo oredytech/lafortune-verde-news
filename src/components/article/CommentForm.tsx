@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { submitComment } from '@/lib/wordpress-api';
+import { useTranslation } from 'react-i18next';
 
 interface CommentFormProps {
   postId: number;
@@ -20,6 +21,7 @@ export const CommentForm = ({ postId, onCommentSubmitted }: CommentFormProps) =>
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,43 +70,43 @@ export const CommentForm = ({ postId, onCommentSubmitted }: CommentFormProps) =>
     <Card>
       <CardHeader>
         <CardTitle className="text-lg font-bold text-news-primary">
-          Laisser un commentaire
+          {t('leave_comment')}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="author_name">Nom *</Label>
+              <Label htmlFor="author_name">{t('name')} *</Label>
               <Input
                 id="author_name"
                 type="text"
                 value={formData.author_name}
                 onChange={(e) => setFormData(prev => ({ ...prev, author_name: e.target.value }))}
-                placeholder="Votre nom"
+                placeholder={t('name')}
                 required
               />
             </div>
             <div>
-              <Label htmlFor="author_email">Email *</Label>
+              <Label htmlFor="author_email">{t('email')} *</Label>
               <Input
                 id="author_email"
                 type="email"
                 value={formData.author_email}
                 onChange={(e) => setFormData(prev => ({ ...prev, author_email: e.target.value }))}
-                placeholder="votre@email.com"
+                placeholder={t('email')}
                 required
               />
             </div>
           </div>
           
           <div>
-            <Label htmlFor="content">Commentaire *</Label>
+            <Label htmlFor="content">{t('comment')} *</Label>
             <Textarea
               id="content"
               value={formData.content}
               onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
-              placeholder="Écrivez votre commentaire..."
+              placeholder={t('comment')}
               rows={4}
               required
             />
@@ -115,7 +117,7 @@ export const CommentForm = ({ postId, onCommentSubmitted }: CommentFormProps) =>
             disabled={isSubmitting}
             className="bg-news-primary hover:bg-news-primary-dark"
           >
-            {isSubmitting ? 'Envoi en cours...' : 'Publier le commentaire'}
+            {isSubmitting ? '...' : t('submit')}
           </Button>
         </form>
       </CardContent>

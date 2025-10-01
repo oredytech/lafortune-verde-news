@@ -11,11 +11,14 @@ import {
 import logoImage from '@/assets/LOGO LARGE 2.jpg';
 import { fetchCategories } from '@/lib/wordpress-api';
 import { Category } from '@/types/wordpress';
+import { LanguageSelector } from './LanguageSelector';
+import { useTranslation } from 'react-i18next';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentDate, setCurrentDate] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -84,14 +87,14 @@ export const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="/" className="text-foreground hover:text-news-primary font-medium transition-colors">
-              Accueil
+              {t('home')}
             </a>
             
             {/* Categories Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="text-foreground hover:text-news-primary font-medium transition-colors">
-                  Catégories
+                  {t('categories')}
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
@@ -110,16 +113,17 @@ export const Header = () => {
             </DropdownMenu>
 
             <a href="/contacts" className="text-foreground hover:text-news-primary font-medium transition-colors">
-              Contacts
+              {t('contacts')}
             </a>
             <a href="/a-propos" className="text-foreground hover:text-news-primary font-medium transition-colors">
-              À propos
+              {t('about')}
             </a>
           </nav>
 
           {/* Search and Mobile Menu */}
           <div className="flex items-center space-x-4">
-            <div className="hidden md:flex items-center">
+            <div className="hidden md:flex items-center space-x-2">
+              <LanguageSelector />
               <Button 
                 size="sm" 
                 className="bg-news-primary hover:bg-news-primary-dark"
@@ -129,15 +133,17 @@ export const Header = () => {
               </Button>
             </div>
             
-            {/* Mobile menu button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+            {/* Mobile: Language selector and menu button */}
+            <div className="md:hidden flex items-center space-x-2">
+              <LanguageSelector />
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -153,16 +159,16 @@ export const Header = () => {
                 onClick={() => window.location.href = '/recherche'}
               >
                 <Search className="h-4 w-4 mr-2" />
-                Rechercher
+                {t('search')}
               </Button>
             </div>
             <a href="/" className="block text-foreground hover:text-news-primary font-medium py-2">
-              Accueil
+              {t('home')}
             </a>
             
             {/* Mobile Categories */}
             <div className="border-t border-border pt-2 mt-2">
-              <div className="text-sm font-semibold text-muted-foreground mb-2">Catégories</div>
+              <div className="text-sm font-semibold text-muted-foreground mb-2">{t('categories')}</div>
               <div className="max-h-48 overflow-y-auto">
                 {categories.map((category) => (
                   <a 
@@ -178,10 +184,10 @@ export const Header = () => {
             
             <div className="border-t border-border pt-2 mt-2">
               <a href="/contacts" className="block text-foreground hover:text-news-primary font-medium py-2">
-                Contacts
+                {t('contacts')}
               </a>
               <a href="/a-propos" className="block text-foreground hover:text-news-primary font-medium py-2">
-                À propos
+                {t('about')}
               </a>
             </div>
           </nav>

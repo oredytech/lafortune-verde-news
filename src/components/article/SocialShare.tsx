@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 interface SocialShareProps {
   title: string;
@@ -11,6 +12,7 @@ interface SocialShareProps {
 
 export const SocialShare = ({ title, url }: SocialShareProps) => {
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const shareUrls = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
@@ -40,8 +42,7 @@ export const SocialShare = ({ title, url }: SocialShareProps) => {
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
         <div className="flex items-center gap-2 text-foreground font-medium">
           <Share2 className="h-5 w-5" />
-          <span className="hidden sm:inline">Partager cet article :</span>
-          <span className="sm:hidden">Partager :</span>
+          <span>{t('share')} :</span>
         </div>
         
         <div className="flex flex-wrap gap-2">

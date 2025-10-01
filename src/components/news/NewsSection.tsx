@@ -2,6 +2,7 @@ import { Post } from '@/types/wordpress';
 import { ArticleCard } from './ArticleCard';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface NewsSectionProps {
   title: string;
@@ -11,6 +12,8 @@ interface NewsSectionProps {
 }
 
 export const NewsSection = ({ title, posts, sectionId, showViewMore = true }: NewsSectionProps) => {
+  const { t } = useTranslation();
+  
   if (posts.length === 0) return null;
 
   return (
@@ -25,7 +28,7 @@ export const NewsSection = ({ title, posts, sectionId, showViewMore = true }: Ne
             className="text-news-primary border-news-primary hover:bg-news-primary hover:text-white"
             onClick={() => window.location.href = `/category/${sectionId}`}
           >
-            Voir plus
+            {t('view_more')}
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         )}

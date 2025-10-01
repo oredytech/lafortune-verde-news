@@ -7,6 +7,7 @@ import { Sidebar } from '@/components/layout/Sidebar';
 import { SocialShare } from '@/components/article/SocialShare';
 import { CommentForm } from '@/components/article/CommentForm';
 import { CommentsList } from '@/components/article/CommentsList';
+import { TranslatedArticleContent } from '@/components/article/TranslatedArticleContent';
 import { formatDate, getFeaturedImageUrl } from '@/lib/wordpress-api';
 import { useToast } from '@/hooks/use-toast';
 import { decodeHtmlEntities } from '@/lib/utils';
@@ -86,9 +87,9 @@ const ArticleDetail = () => {
           <article className="lg:col-span-3">
             {/* Article Header */}
             <header className="mb-6">
-              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
-                {decodeHtmlEntities(post.title.rendered)}
-              </h1>
+              <TranslatedArticleContent 
+                title={post.title.rendered}
+              />
               <div className="flex items-center text-sm text-muted-foreground mb-4">
                 <time dateTime={post.date}>
                   {formatDate(post.date)}
@@ -108,9 +109,8 @@ const ArticleDetail = () => {
             )}
 
             {/* Article Content */}
-            <div 
-              className="prose prose-lg max-w-none mb-8"
-              dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+            <TranslatedArticleContent 
+              content={post.content.rendered}
             />
 
             {/* Social Share */}
